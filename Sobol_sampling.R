@@ -25,7 +25,7 @@
 # added the scrambling option
 # eliminated the first colum with number of samples
 
-makeMCSample <- function(n, vals,n.scramb,n.seed) {
+makeMCSample <- function(n, vals, n.scramb, n.seed) {
   # Packages to generate quasi-random sequences
   # and rearrange the data
   require(randtoolbox)
@@ -37,13 +37,13 @@ makeMCSample <- function(n, vals,n.scramb,n.seed) {
   # Fill a matrix with the values
   # inverted from uniform values to
   # distributions of choice
-  samp <- matrix(rep(0,n*(length(vals))), nrow=n)
+  samp <- matrix(rep(0, n*(length(vals))), nrow=n)
   for (i in 1:length(vals)) {
     l <- vals[[i]]
     dist <- l$dist
     params <- l$params
-    fname <- paste("q",dist,sep="")
-    samp[,i] <- do.call(fname,c(list(p=sob[,i]),params))
+    fname <- paste("q", dist, sep="")
+    samp[, i] <- do.call(fname, c(list(p=sob[, i]), params))
   }
 
   # Convert matrix to data frame and add labels
