@@ -21,8 +21,10 @@
 # 5. estimate and visualize the indices
 # ==============================================
 
-# install.packages("randtoolbox")
-# install.packages("ks")
+# install packages, if missing
+if (!require("randtoolbox")) install.packages("randtoolbox")
+if (!require("ks")) install.packages("ks")
+if (!require("plyr")) install.packages("plyr")
 
 rm(list = ls())
 
