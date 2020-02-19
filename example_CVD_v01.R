@@ -19,8 +19,8 @@
 # 3. run the model
 # 4. look at the input-output space
 # 5. estimate and visualize the indices
-# ==============================================
 
+# 0. initialisation ==============================================
 # install packages, if missing
 if (!require("randtoolbox")) install.packages("randtoolbox")
 if (!require("ks")) install.packages("ks")
@@ -32,9 +32,7 @@ library(ks)
 source("Sobol_sampling.R")
 source("CVD_function.R")
 
-# ==============================================
-# ==============================================
-# 1. chose functions and settings
+# 1. chose functions and settings ==============================================
 # Ishigami-Homma (3 factors)
 
 ai  = c(2, 1)         # parameters
@@ -46,7 +44,6 @@ e.sam = 14      # exponental of the number of samples e.g., = 14
 N     = 2^e.sam # number of samples N = as power of 2 as in Sobol seq
 n.m   = 10      # number of slides m
 
-# ==============================================
 # Initialize vector and matrix
 
 vals = c() 
@@ -59,21 +56,17 @@ for (k in 1:n.k){
 n.seed   = 1548674 
 n.scramb = 1 # type of scrambling
 
-# ==============================================
-# ==============================================
-# 2. Sobol sampling
+
+# 2. Sobol sampling ==============================================
 
 X.sam <- makeMCSample(N, vals, n.scramb, n.seed)
 
-# ==============================================
-# ==============================================
-# 3 run the model
+
+# 3 run the model ==============================================
 
 Y.sam = sin(X.sam[, 1]) + ai[1] * sin(X.sam[, 2])^2 + ai[2] * X.sam[, 3]^4 * sin(X.sam[, 1])
 
-# ==============================================
-# ==============================================
-# 4 look at input-output space
+# 4 look at input-output space ==============================================
 layout(matrix(c(1:3), nr=1, byrow=F))
 par(oma=c(4, 3, 1, 1))
 par(mar=c(0.5, 2.5, 1, 0))
@@ -90,9 +83,7 @@ for (k in 1:n.k){
   
 }
 
-# ==============================================
-# ==============================================
-# 5: sensitivity analysis
+# 5: sensitivity analysis ==============================================
 
 index = CVD(X.sam, Y.sam, n.m)
 
