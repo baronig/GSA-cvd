@@ -101,6 +101,8 @@ par(mfrow=c(1, 1))
 plot(index[, 1], index[, 2], type="p", xlim=c(0, 0.8), ylim=c(0, 0.8), pch=19, col=col.sel, ylab="", cex = 1.5)
 abline(v=0.1, col="gray", lty=2)
 abline(h=0.1, col="gray", lty=2)
-mtext(expression("Main effect S "[i]), 1, line=2.5)
-mtext(expression("Interaction I "[i]), 2, line=2.5)
-legend(0.6, 0.8, expression(x[1], x[2], x[3]), col=col.sel, pch=19, cex = 1.5)
+mtext(expression("Main effect "*italic("S"[i])), 1, line=2.5)
+mtext(expression("Interaction "*italic("I"[i])), 2, line=2.5)
+legend(0.6, 0.8, expression(italic("x"[1]), italic("x"[2]), italic("x"[3])), col=col.sel, pch=19, cex = 1.5)
+
+       
