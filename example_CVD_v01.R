@@ -35,18 +35,25 @@ source("CVD_function.R")
 # 1. chose functions and settings ==============================================
 # Ishigami-Homma (3 factors)
 
-ai  = c(2, 1)         # parameters
+ai  = c(2, 1)         # fixed parameters
 n.k = 3              # number of factors
 lb  = c(-pi, -pi, -pi) # lower boundary
 ub  = c(pi, pi, pi)    # upper boundary
 
-e.sam = 14      # exponental of the number of samples e.g., = 14 
+e.sam = 14      # exponent of the number of samples e.g., = 14 
 N     = 2^e.sam # number of samples N = as power of 2 as in Sobol seq
 n.m   = 10      # number of slides m
 
+Ishigami_Homma_3 = function(x)
+{  
+  sin(x[,1]) + ai[1] * sin(x[,2])^2 + ai[2] * x[,3]^4 * sin(x[,1])
+}
+
+model_f = Ishigami_Homma_3 #choose function
+  
 # Initialize vector and matrix
 
-vals = c() 
+vals = c() #specifications for Sobol sampling
 for (k in 1:n.k){
   # k=1
   temp <- list(list(var=paste("x", k, sep=""), dist="unif", params = list(min = lb[k], max = ub[k])))
@@ -64,7 +71,7 @@ X.sam <- makeMCSample(N, vals, n.scramb, n.seed)
 
 # 3 run the model ==============================================
 
-Y.sam = sin(X.sam[, 1]) + ai[1] * sin(X.sam[, 2])^2 + ai[2] * X.sam[, 3]^4 * sin(X.sam[, 1])
+Y.sam = model_f(X.sam)
 
 # 4 look at input-output space ==============================================
 layout(matrix(c(1:3), nr=1, byrow=F))
