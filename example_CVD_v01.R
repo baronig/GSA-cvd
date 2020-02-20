@@ -73,7 +73,7 @@ X.sam <- makeMCSample(N, vals, n.scramb, n.seed)
 
 Y.sam = model_f(X.sam)
 
-# 4 look at input-output space ==============================================
+# 4 visualize input-output space ==============================================
 layout(matrix(c(1:3), nr=1, byrow=F))
 par(oma=c(4, 3, 1, 1))
 par(mar=c(0.5, 2.5, 1, 0))
@@ -85,8 +85,8 @@ for (k in 1:n.k){
   if(k==1) yaxt=NULL else yaxt="n"
   plot(X.sam[, k], Y.sam, yaxt=yaxt, ylab="", xlab="", xlim=range(X.sam[, k]), ylim=range(Y.sam), col=col.sel[1], pch=1)
     if (k==1) mtext(expression(italic("Y")), side=2, line = 2)
-    mtext(bquote(italic("x")[.(k)]), side =1, line = 2.5)
-    abline(h=0, lty=1, col=1)
+  mtext(bquote(italic("x")[.(k)]), side =1, line = 2.5)
+  abline(h=0, lty=1, col=1)
   
 }
 
