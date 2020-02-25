@@ -16,8 +16,8 @@
 # University of Potsdam (Germany)
 
 # ===================================================
-#  Y = output
 #  X = input
+#  Y = output
 #  m = number of slides
 # ===================================================
 
