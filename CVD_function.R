@@ -73,7 +73,7 @@ CVD = function(X, Y, m) {
         lb = min(y_F1, y_F2)
         df_F1 = kde(x = y_F1, xmin = lb, xmax = ub)
         df_F2 = kde(x = y_F2, xmin = lb, xmax = ub)
-        Ii_temp[j, k] = sum(abs(df.F1$estimate/sum(df.F1$estimate)-df.F2$estimate/sum(df.F2$estimate)))
+        Ii_temp[j, k] = sum(abs(df_F1$estimate/sum(df_F1$estimate)-df_F2$estimate/sum(df_F2$estimate)))
   
         j = j +1
       }
