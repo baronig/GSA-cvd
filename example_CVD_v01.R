@@ -41,7 +41,7 @@ lb  = c(-pi, -pi, -pi) # lower boundary
 ub  = c(pi, pi, pi)    # upper boundary
 
 e_sam = 14      # exponent of the number of samples e.g., = 14 
-N     = 2^e.sam # number of samples N = as power of 2 as in Sobol seq
+N     = 2^e_sam # number of samples N = as power of 2 as in Sobol seq
 n_m   = 10      # number of slides m
 
 Ishigami_Homma_3 = function(x)
