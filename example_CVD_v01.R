@@ -1,13 +1,13 @@
 # ==============================================
 # Example script for implementing the global sensitivity analysis based on
-# the combined variance and distribution based strategy
+# the combined variance and distribution based strategy (CVD)
 # 
 # 25 February 2020
 # 
 # Gabriele Baroni
 # g.baroni@unibo.it
 # University of Bologna (Italy)
-
+# 
 # Till Francke
 # francke@uni-potsdam.de
 # University of Potsdam (Germany)
@@ -35,8 +35,8 @@ source("CVD_function.R")
 # 1. chose functions and settings ==============================================
 # Ishigami-Homma (3 factors)
 
-ai  = c(2, 1)         # fixed parameters
-n.k = 3              # number of factors
+ai  = c(2, 1)          # fixed parameters
+n.k = 3                # number of factors
 lb  = c(-pi, -pi, -pi) # lower boundary
 ub  = c(pi, pi, pi)    # upper boundary
 
@@ -56,7 +56,7 @@ model_f = Ishigami_Homma_3 #choose function
 vals = c() #specifications for Sobol sampling
 for (k in 1:n.k){
   # k=1
-  temp <- list(list(var=paste("x", k, sep=""), dist="unif", params = list(min = lb[k], max = ub[k])))
+  temp = list(list(var=paste("x", k, sep=""), dist="unif", params = list(min = lb[k], max = ub[k])))
   vals = c(vals, temp) 
 }
 
@@ -66,7 +66,7 @@ n.scramb = 1 # type of scrambling
 
 # 2. Sobol sampling ==============================================
 
-X.sam <- makeMCSample(N, vals, n.scramb, n.seed)
+X.sam = makeMCSample(N, vals, n.scramb, n.seed)
 
 
 # 3 run the model ==============================================
