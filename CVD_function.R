@@ -1,12 +1,11 @@
 # ===================================================
 # ===================================================
-# ===================================================
-# Global sensitivity analysis based on CVD
-# combined variance and distribution-based approach
-# the function estimate main and interaction index
-# based on a generic sample N and interval m
-# 
-# 12 February 2020
+# Global sensitivity analysis based on combined
+# variance and distribution-based approach (CVD).
+# The function estimate main and interaction index
+# based on a generic sample N and interval m.
+#  
+# 25 February 2020
 # 
 # Gabriele Baroni
 # g.baroni@unibo.it
@@ -22,16 +21,16 @@
 #  m = number of slides
 # ===================================================
 
-CVD <- function(X, Y, m) {
+CVD = function(X, Y, m) {
 
   # initialize  
   Si      = rep(NA, n.k)                   # Si based on CVD
   Ii      = rep(NA, n.k)                   # interaction terms 
-  MCY     = array(NA, c(n.m, n.k))          # initialize mean of the conditional Y
+  MCY     = array(NA, c(n.m, n.k))         # initialize mean of the conditional Y
   n.comb  = factorial(n.m)/(factorial(2)
-                      *factorial(n.m-2))  # number of combinations
-  Ii.temp = array(NA, c(n.comb, n.k))       # interaction indices
-  y.F     = array(NA, c(N, n.m, n.k))        # conditional samples
+                      *factorial(n.m-2))   # number of combinations
+  Ii.temp = array(NA, c(n.comb, n.k))      # interaction indices
+  y.F     = array(NA, c(N, n.m, n.k))      # conditional samples
 
   # calculations
   VUY = var(Y.sam) # variance of the unconditional Y
@@ -72,8 +71,8 @@ CVD <- function(X, Y, m) {
         
         ub = max(y.F1, y.F2)
         lb = min(y.F1, y.F2)
-        df.F1 <- kde(x=y.F1, xmin=lb, xmax=ub)
-        df.F2 <- kde(x=y.F2, xmin=lb, xmax=ub)
+        df.F1 = kde(x=y.F1, xmin=lb, xmax=ub)
+        df.F2 = kde(x=y.F2, xmin=lb, xmax=ub)
         Ii.temp[j, k] = sum(abs(df.F1$estimate/sum(df.F1$estimate)-df.F2$estimate/sum(df.F2$estimate)))
   
         j = j +1
