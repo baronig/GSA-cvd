@@ -2,7 +2,7 @@
 # Example script for implementing the global sensitivity analysis based on
 # the combined variance and distribution based strategy
 # 
-# 12 February 2020
+# 25 February 2020
 # 
 # Gabriele Baroni
 # g.baroni@unibo.it
