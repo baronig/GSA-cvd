@@ -2,9 +2,11 @@
 # ===================================================
 # Global sensitivity analysis based on combined
 # variance and distribution-based approach (CVD).
+# Baroni and Francke, under review
+# 
 # The function estimate main and interaction index
 # based on a generic sample N and interval m.
-#  
+
 # 25 February 2020
 # 
 # Gabriele Baroni
@@ -33,7 +35,7 @@ CVD = function(X, Y, m) {
   y_F     = array(NA, c(N, n_m, n_k))      # conditional samples
 
   # calculations
-  VUY = var(Y_sam) # variance of the unconditional Y
+  VUY = var(Y) # variance of the unconditional Y
   
   # ============================================
   # to estimate main effect
@@ -43,7 +45,7 @@ CVD = function(X, Y, m) {
     
     for (m in 1:n_m) {
   
-      y_F_temp = Y[X_sam[, k] >= qua_x[m] & X_sam[, k] < qua_x[m+1]]
+      y_F_temp = Y[X[, k] >= qua_x[m] & X[, k] < qua_x[m+1]]
       MCY[m, k]  = mean(y_F_temp, na.rm=T)                        # calculate conditional mean
       y_F[(1:length(y_F_temp)), m, k] = y_F_temp - MCY[m, k]       # store the centered conditional distributions
       
