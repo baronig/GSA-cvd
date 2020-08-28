@@ -21,16 +21,25 @@
 # 5. estimate and visualize the indices
 
 # 0. initialisation ==============================================
-# install packages, if missing
-
 rm(list = ls())
 
-if (!require("sensitivity")) install.packages("sensitivity")
-if (!require("randtoolbox")) install.packages("randtoolbox")
-if (!require("ks")) install.packages("ks")
-if (!require("plyr")) install.packages("plyr")
-if (!require("lattice")) install.packages("lattice")
-if (!require("Matrix")) install.packages("Matrix")
+# install packages, if missing, load them
+install_load = function(pckg_name)
+{
+  if (!require(pckg_name, character.only = TRUE))
+  {
+    install.packages(pckg_name)
+    library(pckg_name, character.only = TRUE)
+  }
+}  
+
+install_load(pckg_name = "sensitivity")
+install_load(pckg_name = "randtoolbox")
+install_load(pckg_name = "ks")
+install_load(pckg_name = "plyr")
+install_load(pckg_name = "lattice")
+install_load(pckg_name = "Matrix")
+
 
 source("Sobol_sampling.R")
 
